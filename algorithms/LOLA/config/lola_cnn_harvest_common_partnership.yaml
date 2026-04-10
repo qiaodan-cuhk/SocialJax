@@ -1,0 +1,47 @@
+"LR_ACTOR": 0.001
+"LR_CRITIC": 0.0005
+"LR_CORRECTION": 1.0
+"CORRECTIONS": True
+"NUM_ENVS": 64
+"NUM_STEPS": 500
+"TOTAL_TIMESTEPS": 1e8
+"GAMMA": 0.99
+"GAE_LAMBDA": 0.95
+"ENT_COEF": 0.01
+"VF_COEF": 0.5
+"MAX_GRAD_NORM": 0.5
+"ACTIVATION": "relu"
+"ENV_NAME": "harvest_common_open"
+"ENV_KWARGS":
+  "num_agents" : 2
+  "num_inner_steps" : 500
+  "shared_rewards" : False
+  "cnn" : True
+  "jit" : True
+  "map_ASCII" : ["AAA    A  WW  A    AAA",
+                 "AA    AAA WW AAA    AA",
+                 "A    AAAAAWWAAAAA    A",
+                 "      AAA WW AAA      ",
+                 "       A  WW  A       ",
+                 "  A       WW       A  ",
+                 " AAA  Q   WW   Q  AAA ",
+                 "AAAAA     WW     AAAAA",
+                 " AAA  WWWWWWWWWW  AAA ",
+                 "  A       WW       A  ",
+                 "WWWWWWWWW WW WWWWWWWWW",
+                 "          WW          ",
+                 "  WWWWWWWWWWWWWWWWWW  ",
+                 "  P P P P P P P P P   ",
+                 " P P P P P P P P P P  ",
+                ]
+
+"ANNEAL_LR": False
+"SEED": 30
+"NUM_SEEDS": 1
+"TUNE": False
+"GIF_NUM_FRAMES": 250
+
+# WandB Params
+"ENTITY": ""
+"PROJECT": "lola_socialjax"
+"WANDB_MODE" : "online"

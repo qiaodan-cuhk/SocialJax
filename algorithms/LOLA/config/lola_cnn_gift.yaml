@@ -1,0 +1,31 @@
+"LR_ACTOR": 0.001
+"LR_CRITIC": 0.0005
+"LR_CORRECTION": 1.0
+"CORRECTIONS": True
+"NUM_ENVS": 64
+"NUM_STEPS": 500
+"TOTAL_TIMESTEPS": 1e8
+"GAMMA": 0.99
+"GAE_LAMBDA": 0.95
+"ENT_COEF": 0.01
+"VF_COEF": 0.5
+"MAX_GRAD_NORM": 0.5
+"ACTIVATION": "relu"
+"ENV_NAME": "gift"
+"ENV_KWARGS":
+  "num_agents" : 2
+  "num_inner_steps" : 500
+  "shared_rewards" : False
+  "cnn" : True
+  "jit" : True
+
+"ANNEAL_LR": False
+"SEED": 30
+"NUM_SEEDS": 1
+"TUNE": False
+"GIF_NUM_FRAMES": 300
+
+# WandB Params
+"ENTITY": ""
+"PROJECT": "lola_socialjax"
+"WANDB_MODE" : "online"
