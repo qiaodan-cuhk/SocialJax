@@ -16,6 +16,10 @@ import distrax
 from gymnax.wrappers.purerl import LogWrapper, FlattenObservationWrapper
 import socialjax
 from socialjax.wrappers.baselines import LogWrapper, SVOLogWrapper
+from socialjax.train_logging import (
+    log_metrics_wandb_tensorboard,
+    maybe_create_tensorboard_writer,
+)
 import hydra
 from omegaconf import OmegaConf
 import wandb
@@ -182,6 +186,7 @@ def make_train(config):
     )
 
     env = LogWrapper(env, replace_info=False)
+    tb_writer = maybe_create_tensorboard_writer(config)
 
     rew_shaping_anneal = optax.linear_schedule(
         init_value=0.,
@@ -495,7 +500,7 @@ def make_train(config):
                     rng = update_state[-1]
                 
             def callback(metric):
-                wandb.log(metric)
+                log_metrics_wandb_tensorboard(metric, tb_writer)
 
             update_step = update_step + 1
             metric = jax.tree_map(lambda x: x.mean(), metric)

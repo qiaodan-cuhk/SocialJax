@@ -1,4 +1,4 @@
-name: SocialJax
+name: socialjax
 channels:
   - conda-forge
 dependencies:
@@ -20,4 +20,11 @@ dependencies:
 
   - pip
   - pip:
+    # setuptools>=82 drops pkg_resources; tensorboard still needs it
+    - setuptools>=70,<82
     - gymnax==0.0.8
+    - tensorflow-probability==0.25.0
+    - tensorboardX>=2.6
+    - tensorboard>=2.14
+    - pillow>=10.0.0
+    - matplotlib>=3.8.0

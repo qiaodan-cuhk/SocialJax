@@ -1,10 +1,11 @@
-"LR_ACTOR": 0.001
+# Aligned with algorithms/MAPPO/config/mappo_cnn_harvest_common.yaml
+"LR_ACTOR": 0.0005
 "LR_CRITIC": 0.0005
 "LR_CORRECTION": 1.0
 "CORRECTIONS": True
-"NUM_ENVS": 64
-"NUM_STEPS": 500
-"TOTAL_TIMESTEPS": 1e8
+"NUM_ENVS": 5
+"NUM_STEPS": 100
+"TOTAL_TIMESTEPS": 1e9
 "GAMMA": 0.99
 "GAE_LAMBDA": 0.95
 "ENT_COEF": 0.01
@@ -13,13 +14,12 @@
 "ACTIVATION": "relu"
 "ENV_NAME": "harvest_common_open"
 "ENV_KWARGS":
-  "num_agents" : 2
-  "num_inner_steps" : 500
-  "shared_rewards" : False
-  "cnn" : True
-  "jit" : True
+  "num_agents": 7
+  "num_inner_steps": 1000
+  "shared_rewards": True
+  "cnn": True
+  "jit": True
 
-"ANNEAL_LR": False
 "SEED": 30
 "NUM_SEEDS": 1
 "TUNE": False
@@ -27,5 +27,7 @@
 
 # WandB Params
 "ENTITY": ""
-"PROJECT": "lola_socialjax"
-"WANDB_MODE" : "online"
+"PROJECT": "socialjax_mappo"
+"WANDB_MODE": "online"
+"WANDB_TAGS":
+  - COMMON_REWARD

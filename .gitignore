@@ -4,3 +4,6 @@ outputs/
 wandb/
 checkpoints/
 *.pickle
+
+training_runs/
+

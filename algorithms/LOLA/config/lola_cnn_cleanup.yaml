@@ -1,9 +1,10 @@
+# Aligned with algorithms/MAPPO/config/mappo_cnn_cleanup.yaml
 "LR_ACTOR": 0.001
-"LR_CRITIC": 0.0005
+"LR_CRITIC": 0.001
 "LR_CORRECTION": 1.0
 "CORRECTIONS": True
-"NUM_ENVS": 64
-"NUM_STEPS": 500
+"NUM_ENVS": 4
+"NUM_STEPS": 100
 "TOTAL_TIMESTEPS": 1e8
 "GAMMA": 0.99
 "GAE_LAMBDA": 0.95
@@ -13,13 +14,12 @@
 "ACTIVATION": "relu"
 "ENV_NAME": "clean_up"
 "ENV_KWARGS":
-  "num_agents" : 2
-  "num_inner_steps" : 500
-  "shared_rewards" : False
-  "cnn" : True
-  "jit" : True
+  "num_agents": 7
+  "num_inner_steps": 1000
+  "shared_rewards": True
+  "cnn": True
+  "jit": True
 
-"ANNEAL_LR": False
 "SEED": 30
 "NUM_SEEDS": 1
 "TUNE": False
@@ -27,5 +27,7 @@
 
 # WandB Params
 "ENTITY": ""
-"PROJECT": "lola_socialjax"
-"WANDB_MODE" : "online"
+"PROJECT": "socialjax"
+"WANDB_MODE": "online"
+"WANDB_TAGS":
+  - COMMON_REWARD

@@ -14,6 +14,10 @@ import distrax
 from gymnax.wrappers.purerl import LogWrapper, FlattenObservationWrapper
 import socialjax
 from socialjax.wrappers.baselines import MAPPOWorldStateWrapper, LogWrapper
+from socialjax.train_logging import (
+    log_metrics_wandb_tensorboard,
+    maybe_create_tensorboard_writer,
+)
 import hydra
 from omegaconf import OmegaConf
 import wandb
@@ -161,6 +165,7 @@ def make_train(config):
 
     env = MAPPOWorldStateWrapper(env)
     env = LogWrapper(env)
+    tb_writer = maybe_create_tensorboard_writer(config)
 
     def linear_schedule(count):
         frac = (
@@ -492,8 +497,8 @@ def make_train(config):
             rng = update_state[-1]
 
             def callback(metric):
-                wandb.log(metric)
-            
+                log_metrics_wandb_tensorboard(metric, tb_writer)
+
             update_steps = update_steps + 1
             metric = jax.tree_map(lambda x: x.mean(), metric)   
             metric["update_steps"] = update_steps

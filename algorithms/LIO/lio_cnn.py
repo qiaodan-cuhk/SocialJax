@@ -36,6 +36,10 @@ from flax.training.train_state import TrainState
 import distrax
 import socialjax
 from socialjax.wrappers.baselines import LogWrapper
+from socialjax.train_logging import (
+    log_metrics_wandb_tensorboard,
+    maybe_create_tensorboard_writer,
+)
 import hydra
 from omegaconf import OmegaConf
 import wandb
@@ -217,6 +221,7 @@ def make_train(config):
     )
 
     env = LogWrapper(env, replace_info=False)
+    tb_writer = maybe_create_tensorboard_writer(config)
 
     actor_net = Actor(action_dim, activation=config["ACTIVATION"])
     critic_net = Critic(activation=config["ACTIVATION"])
@@ -515,7 +520,10 @@ def make_train(config):
             metric["avg_incentive_received"] = avg_inc / num_agents
             metric["avg_env_reward"] = traj1.reward.mean()
 
-            jax.debug.callback(lambda m: wandb.log(m), metric)
+            def _log_metrics(m):
+                log_metrics_wandb_tensorboard(m, tb_writer)
+
+            jax.debug.callback(_log_metrics, metric)
 
             runner_state = (a_params, c_states, i_states,
                             env_st, last_obs, update_step, rng)
